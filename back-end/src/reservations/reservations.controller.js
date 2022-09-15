@@ -29,7 +29,7 @@ function read(_req, res, _next) {
 
 
 async function list(req, res, _next) {
-
+console.log(req.query)
   const { date } = req.query;
   if (date) {
     return res.json({ data: await service.listOnDate(date) });
