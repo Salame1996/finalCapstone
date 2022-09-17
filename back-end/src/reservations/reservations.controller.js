@@ -150,6 +150,7 @@ function isDuringOpenHours(_req, res, next) {
 }
 
 
+
 async function create(req, res, next) {
   const reservation = req.body.data;
   const { status } = reservation;

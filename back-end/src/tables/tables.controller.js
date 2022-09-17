@@ -112,7 +112,7 @@ function tableOpen(req, res, next) {
     return next();
   }
   next({
-    status: 400,
+    status: 200,
     message: `table_id is occupied`,
   })
 }
