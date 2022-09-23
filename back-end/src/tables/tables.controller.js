@@ -70,6 +70,18 @@ function validTableCapacity(req, res, next) {
   })
 }
 
+
+function validTableCapacityType(req, res, next) {
+const capacity = req.body.data.capacity;
+if(Number.isInteger(capacity)){
+return next();
+}
+next({
+status:400,
+message:"capacity must be a number"
+})
+}
+
 async function tableExists(req, res, next) {
   const table_id = req.params.table_id;
   const table = await service.readTable(table_id);
@@ -102,18 +114,19 @@ async function reservationSeated(req, res, next) {
   }
   next({
     status: 400,
-    message: "reservation_id is already seated",
+    message: `${reservation_id} is already seated`,
   })
 }
 
 function tableOpen(req, res, next) {
   const table = res.locals.table;
+  console.log(table);
   if (!table.reservation_id) {
     return next();
   }
   next({
-    status: 200,
-    message: `table_id is occupied`,
+    status: 400,
+    message: `${table_id} is occupied`,
   })
 }
 
@@ -124,7 +137,7 @@ function tableNotOpen(req, res, next) {
   }
   next({
     status: 400,
-    message: "table_id is not occupied",
+    message: `${table_id} is not occupied`,
   })
 }
 
@@ -178,6 +191,7 @@ module.exports = {
     validTableName,
     hasTableCapacity,
     validTableCapacity,
+    validTableCapacityType,
     asyncErrorBoundary(create),
   ],
   read: [asyncErrorBoundary(tableExists), read],

@@ -149,10 +149,11 @@ describe("US-06 - Reservation status", () => {
       reservationOne = await knex("reservations")
         .orderBy(["reservation_date", "reservation_time"])
         .first();
-      [tableOne, tableTwo] = await knex("tables").orderBy("table_name");
+        [tableOne, tableTwo] = await knex("tables").orderBy("table_name");
+        console.log(tableOne, tableTwo)
     });
 
-    test("returns 200 and changes reservation status to 'seated'", async () => {
+    test.only("returns 200 and changes reservation status to 'seated'", async () => {
       expect(tableOne).not.toBeUndefined();
       expect(reservationOne).not.toBeUndefined();
 
