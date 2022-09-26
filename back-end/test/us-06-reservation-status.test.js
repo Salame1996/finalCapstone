@@ -153,7 +153,7 @@ describe("US-06 - Reservation status", () => {
         console.log(tableOne, tableTwo)
     });
 
-    test.only("returns 200 and changes reservation status to 'seated'", async () => {
+    test("returns 200 and changes reservation status to 'seated'", async () => {
       expect(tableOne).not.toBeUndefined();
       expect(reservationOne).not.toBeUndefined();
 
