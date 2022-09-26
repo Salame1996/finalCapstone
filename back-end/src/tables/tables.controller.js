@@ -108,6 +108,7 @@ async function reservationExists(req, res, next) {
 }
 
 async function reservationSeated(req, res, next) {
+  const reservation_id = req.body.data.reservation_id;
   const seated = await service.readTableByRes(req.body.data.reservation_id);
   if (!seated) {
     return next();
@@ -120,13 +121,12 @@ async function reservationSeated(req, res, next) {
 
 function tableOpen(req, res, next) {
   const table = res.locals.table;
-  console.log(table);
   if (!table.reservation_id) {
     return next();
   }
   next({
     status: 400,
-    message: `${table_id} is occupied`,
+    message: `${table.table_id} is occupied`,
   })
 }
 
@@ -137,7 +137,7 @@ function tableNotOpen(req, res, next) {
   }
   next({
     status: 400,
-    message: `${table_id} is not occupied`,
+    message: `${table.table_id} is not occupied`,
   })
 }
 
