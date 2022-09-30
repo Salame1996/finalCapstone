@@ -19,6 +19,14 @@ function TableCreate() {
     })
   }
 
+
+  const handleCapacityChange = ({ target }) => {
+    setTable({
+      ...table,
+      [target.name]: parseInt(target.value),
+    })
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     createTable(table)
@@ -56,8 +64,8 @@ function TableCreate() {
               name="capacity"
               id="capacity"
               required={true}
-              type="text"
-              onChange={handleChange}
+              type="number"
+              onChange={handleCapacityChange}
               value={table.capacity}
 
             />
