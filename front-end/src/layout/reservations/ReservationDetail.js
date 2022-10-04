@@ -18,6 +18,7 @@ function ReservationDetail({ res }) {
       updateResStatus({status: "cancelled"}, reservation.reservation_id)
       .then(() => {
         listTables()
+        setReservation({...reservation, status : 'cancelled'})
         history.push("/dashboard");
       })
       .catch(setError)
@@ -59,9 +60,9 @@ function ReservationDetail({ res }) {
           <></>
           }
         </td>
-        <td data-reservation-id-cancel={reservation.reservation_id}>
+        <td>
           {reservation.status === 'booked' ?
-            <button className="btn btn-danger ml-2" onClick={handleCancelRes}> Cancel </button>
+            <button className="btn btn-danger ml-2" onClick={handleCancelRes} data-reservation-id-cancel={reservation.reservation_id}> Cancel </button>
           :
           <></>
           }

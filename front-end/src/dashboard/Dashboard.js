@@ -18,7 +18,7 @@ function Dashboard({ date }) {
   const location = useLocation();
   const searchedDate = location.search.slice(-10);
 
-// function to know when to toggle column with clear tables button
+// cleares tables
 
   function clearTables(tables) {
     let result = [];
@@ -31,7 +31,7 @@ function Dashboard({ date }) {
   }
   let clearTableToggler = clearTables(tables);
 
-// useEffect's to load reservations and tables
+// load reservations and tables
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -74,7 +74,7 @@ function Dashboard({ date }) {
     }
   }, [searchedDate, history]);
 
-// change day handlers
+// handlers for days
 
   const previousHandler = (event) => {
     event.preventDefault();
