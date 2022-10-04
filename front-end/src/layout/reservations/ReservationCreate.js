@@ -17,7 +17,7 @@ function ReservationCreate({ date }) {
     people: "1",
   })
 
-  // Change Handler 
+  // Event Change Handler 
   const handleChange = ({ target }) => {
     setReservation({
       ...reservation,
@@ -25,7 +25,7 @@ function ReservationCreate({ date }) {
     });
   }
 
-  // submit handler
+  // event submit handler
   function handleSubmit(event) {
     event.preventDefault();
     createReservation({
