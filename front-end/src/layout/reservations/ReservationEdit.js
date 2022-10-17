@@ -6,7 +6,15 @@ import { ReservationForm } from "./ReservationForms";
 
 function ReservationEdit({ date }) {
   const { reservation_id } = useParams();
-  const [currentReservation, setCurrentReservation] = useState({reservation_id});
+  const [currentReservation, setCurrentReservation] = useState({
+    first_name: "",
+    last_name: "",
+    mobile_number: "",
+    reservation_date: date,
+    reservation_time: "",
+    people: "1",
+    reservation_id,
+});
   const [error, setError] = useState(null);
   const history = useHistory();
   
