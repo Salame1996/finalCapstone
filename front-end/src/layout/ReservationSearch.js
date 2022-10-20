@@ -16,7 +16,6 @@ function ReservationSearch() {
       listReservations({mobile_number})
       .then((response) => {
         setReservations(response)
-        history.push('/search')
       })
       .catch(setError('No reservations found'))
   }
