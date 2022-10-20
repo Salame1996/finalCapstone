@@ -133,7 +133,7 @@ function dateIsNotTuesday(req, _res, next) {
   if (day === 2)
     return next({
       status: 400,
-      message: "closed",
+      message: "Restaurant is Closed on a Tuesday",
     });
   next();
 }
