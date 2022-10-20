@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { listReservations } from "../utils/api";
 
 import ReservationDetail from "./reservations/ReservationDetail";
@@ -7,15 +6,16 @@ import ReservationDetail from "./reservations/ReservationDetail";
 function ReservationSearch() {
   const [mobile_number, setMobile_number] = useState('');
   const [reservations, setReservations] = useState(null);
-  const history = useHistory();
   const [error, setError] = useState('No reservations found');
 
   const handleSubmit = (event) => {
       event.preventDefault();
+      setReservations([])
       setError(null);
       listReservations({mobile_number})
       .then((response) => {
-        setReservations(response)
+        setReservations(() => response)
+        console.log(response)
       })
       .catch(setError('No reservations found'))
   }
