@@ -140,7 +140,27 @@ function dateIsNotTuesday(req, _res, next) {
 
 function isDuringOpenHours(_req, res, next) {
   const { hour, mins } = res.locals;
-  if (hour >= 22 || (hour <= 10 && mins <= 30)) {
+  const hourNum = parseInt(hour)
+  const minNum = parseInt(mins)
+  if(hourNum > 21) { 
+    return next({
+      status: 400,
+      message: "Not open during those hours",
+    });
+  }
+  if(hourNum === 21 && minNum >= 30) { 
+    return next({
+      status: 400,
+      message: "Not open during those hours",
+    });
+  }
+  if(hourNum < 10) {
+    return next({
+      status: 400,
+      message: "Not open during those hours",
+    });
+  }
+  if(hourNum === 10 && minNum < 30) {
     return next({
       status: 400,
       message: "Not open during those hours",
